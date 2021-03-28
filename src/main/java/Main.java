@@ -32,7 +32,7 @@ public class Main {
         List<CatFacts> factsList = mapper.readValue(response.getEntity().getContent(),
                                                     new TypeReference<>() {});
 
-        factsList.stream().filter(x -> x.isUsed() == false).forEach(System.out::println);
+        factsList.stream().filter(x -> x.isUsed() == true).forEach(System.out::println);
 
     }
 
