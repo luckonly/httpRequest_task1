@@ -8,6 +8,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -29,10 +30,11 @@ public class Main {
         HttpGet request = new HttpGet(URL);
         CloseableHttpResponse response = httpClient.execute(request);
 
+        System.out.println("---getAllHeaders---");
+        Arrays.stream(response.getAllHeaders()).forEach(System.out::println);
         List<CatFacts> factsList = mapper.readValue(response.getEntity().getContent(),
                                                     new TypeReference<>() {});
-
-        factsList.stream().filter(x -> x.isUsed() == true).forEach(System.out::println);
+        factsList.stream().filter(x -> x.isUsed()).forEach(System.out::println);
 
     }
 
