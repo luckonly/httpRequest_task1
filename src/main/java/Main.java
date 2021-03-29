@@ -34,7 +34,7 @@ public class Main {
         Arrays.stream(response.getAllHeaders()).forEach(System.out::println);
         List<CatFacts> factsList = mapper.readValue(response.getEntity().getContent(),
                                                     new TypeReference<>() {});
-        factsList.stream().filter(x -> x.isUsed()).forEach(System.out::println);
+        factsList.stream().filter(x -> !x.isUsed()).forEach(System.out::println);
 
     }
 
